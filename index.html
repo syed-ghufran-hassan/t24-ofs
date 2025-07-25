@@ -232,23 +232,25 @@
 
 				<br/><br/>
 
-				<div class="row">
-					<div class="columns small-12 medium-9 medium-centered">
-						<h3>OFS REQUEST SYNTAX</h3>
-						<label>Transaction Request
-							<p class="callout" style="font-weight:bold">
-								<span style="color: #186a3b">OPERATION</span>,<span style="color:  #943126 ">OPTIONS</span>,<span style="color: #f5b041 ">USER INFORMATION</span>,<span style="color: #e74c3c ">TRANSACTION ID</span>,<span style="color:#2e86c1">Message Data <i>(comma separated)</i></span>
-							</p>
-						</label>
-						<label>Enquiry Request
-							<p class="callout" style="font-weight:bold">
-								<span style="color: #186a3b">ENQUIRY.SELECT</span>,<span style="color:  #943126 "></span>,<span style="color: #f5b041 ">USER INFORMATION</span>,<span style="color: #e74c3c">ENQUIRY</span>,<span style="color:#2e86c1">Message Data <i>(comma separated)</i></span>
-							</p>
-						</label>
-					</div>
-
-					<br/>
-				</div><!--/.row-->
+				 <div class="row">
+            <div class="columns small-12 medium-3">
+                <label>Transaction ID <span class="help-text">(optional)</span>
+                    <br/>
+                    <input type="text" v-model="t24msgid" />
+                </label>
+            </div>
+            <div class="columns small-12 medium-9">
+                <label>Message Data <span class="help-text">(optional - comma separated values)</span>
+                    <textarea v-model="t24msgdata" 
+                             rows=2 
+                             placeholder="CUSTOMER=100724,CATEGORY=1001,CURRENCY=USD"
+                             @input="validateMessageData"></textarea>
+                    <span v-if="containsSpecialChars" class="label warning">
+                        Warning: Special characters detected. They will be automatically escaped.
+                    </span>
+                </label>
+            </div>
+        </div>
 			</template>
 
 			<template id="t24abbrtemplate">
