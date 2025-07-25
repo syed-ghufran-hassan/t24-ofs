@@ -8,15 +8,19 @@ Vue.component("automsgs",{
 	template:"#automsgsTemplate",
 	data: function(){
 		return {
-			iserr:false,
-			pageTransaction:true,
-			pageEnquiry:false,
-			t24app: "",t24vers:"",t24func:"",t24auth:"",t24process:"",
-			t24user:"",t24pass:"",t24msgid:"",t24msgdata:"",
-			t24company:"",t24replace:"",t24gts:"",
-			getMessage:false
-		}
-	},
+            iserr:false,
+            pageTransaction:true,
+            pageEnquiry:false,
+            t24app: "",t24vers:"",t24func:"",t24auth:"",t24process:"",
+            t24user:"",t24pass:"",t24msgid:"",t24msgdata:"",
+            t24company:"",t24replace:"",t24gts:"",
+            getMessage:false,
+            // Add these new properties for special character handling
+            containsSpecialChars: false,
+            specialCharsRegex: /[&;|]/g
+        }
+    },
+
 	methods:{
 		resetVariables: function(){
 			this.t24app = ""; this.t24vers=""
@@ -25,6 +29,15 @@ Vue.component("automsgs",{
 			this.t24company="";this.t24replace="",this.t24gts=""
 
 		},
+                // Add these new methods
+        validateMessageData() {
+            this.containsSpecialChars = this.specialCharsRegex.test(this.t24msgdata);
+        },
+        escapeSpecialChars(str) {
+            return str.replace(this.specialCharsRegex, function(match) {
+                return '\\' + match;
+            });
+        },
 		setPageTransaction: function(){
 			this.pageTransaction = true
 			this.pageEnquiry= false
