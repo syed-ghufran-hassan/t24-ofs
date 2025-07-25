@@ -3998,4 +3998,15 @@ a.thumbnail {
 .clearfix::after {
   clear: both; }
 
+
+.label.warning {
+        background-color: #ffae42;
+        color: #fff;
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        margin-top: 0.5em;
+        border-radius: 3px;
+        font-size: 0.85em;
+    }
+
 /*# sourceMappingURL=foundation.css.map */
